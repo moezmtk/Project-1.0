@@ -6,39 +6,48 @@ const app = express()
 const port = process.env.port || 3000
 
 
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
+const http = require('http');
+http.createServer((req, res)=> {
+})
+
+app.listen(port,()=>{
+    console.log(`Express server is running at port ${port}`)
+})
 
 
-app.post('/firstUpper/:str1',(req,res)=>{
-    const str2 = req.params.str1
+//ye5dem
+app.get('/firstUpper/:str1',(req,res)=>{
+    let str2 = req.params.str1
     str2 = str2.charAt(0).toUpperCase() + str2.slice(1)
-    res.json({test: str2})
-    res.send(str2)
+    res.json({result: str2})
+    console.log(str2)
 
 })
 
-app.post('/deleteElement/:array/:index',(req,res)=>{
-    const array = req.params.array
+app.get('/deleteElement/:array/:index',(req,res)=>{
+    let array = req.params.array
     const index = req.params.index
     array = array.splice(index,1)
     res.json({result:array})
-    res.send(array)
+    console.log(array)
 })
 
-app.post('/deepClone/:obj',(req,res)=>{
+app.get('/deepClone/:obj',(req,res)=>{
     const obj1 = req.params.obj
     const obj2 = Object.assign({},obj1)
     res.json({result:obj2})
-    res.send(obj2)
+    console.log(obj2)
 
 })
 
-app.post('/groupByProperty/:array/:prop',(req,res)=>{
+app.get('/groupByProperty/:array/:prop',(req,res)=>{
     const array = req.params.array
     const prop = req.params.prop
     function groupBy(objectArray, property) {
-        return objectArray.reduce(function (acc, obj) {
+        return objectArray.reduce((acc, obj)=> {
         const key = obj[property]
         if (!acc[key]) {
             acc[key] = []
@@ -49,21 +58,26 @@ app.post('/groupByProperty/:array/:prop',(req,res)=>{
     }
     const result = groupBy(array,prop)
     res.json({result:result})
-    res.send(result)
+    console.log(result)
 })
-
-app.post('/subString/:str4/:str5',(req,res)=>{
+//ye5dem
+app.get('/subString/:str4/:str5',(req,res)=>{
     const str4 = req.params.str4
     const str5 = req.params.str5
     if(str4.includes(str5)){
         console.log(str5 ,'sub string of ', str4)
         res.json({status:true})
     }else{
-        res.send(str5 ,'not sub string of ', str4)
+        console.log(str5 ,'not sub string of ', str4)
         res.json({status:false})
     }
 
 })
+
+
+
+
+
 
 
 
