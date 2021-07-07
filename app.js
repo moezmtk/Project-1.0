@@ -27,24 +27,37 @@ app.get('/firstUpper/:str1',(req,res)=>{
 
 })
 
-app.get('/deleteElement/:array/:index',(req,res)=>{
-    let array = req.params.array
+app.get('/deleteElement/:index',(req,res)=>{
+    
+    
+    var array = [1,2,3,4]
+    
+    
     const index = req.params.index
-    array = array.splice(index,1)
+    array.splice(index,1)
     res.json({result:array})
     console.log(array)
 })
 
-app.get('/deepClone/:obj',(req,res)=>{
-    const obj1 = req.params.obj
+app.get('/deepClone',(req,res)=>{
+    
+    const obj1 = { 
+        firstName: "James", 
+        lastName: "Bond", 
+        age: 9}
+
+
     const obj2 = Object.assign({},obj1)
     res.json({result:obj2})
     console.log(obj2)
 
 })
 
-app.get('/groupByProperty/:array/:prop',(req,res)=>{
-    const array = req.params.array
+app.get('/groupByProperty/:prop',(req,res)=>{
+    
+    const array = [{name:'test'},{name:'test'},{name:'test1'},{name:'test12'},{name:'test12'}]
+    
+    
     const prop = req.params.prop
     function groupBy(objectArray, property) {
         return objectArray.reduce((acc, obj)=> {
