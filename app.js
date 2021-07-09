@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 
+const router = require('./Router/router')
 
 const app = express()
 const port = process.env.port || 3000
@@ -13,15 +14,39 @@ const http = require('http');
 http.createServer((req, res)=> {
 })
 
+app.use('/',router)
 app.listen(port,()=>{
     console.log(`Express server is running at port ${port}`)
 })
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 //work
 app.get('/firstUpper/:str1',(req,res)=>{
-    
-    //exemple : test
     let str2 = req.params.str1
     str2 = str2.charAt(0).toUpperCase() + str2.slice(1)
     res.json({result: str2})
@@ -30,9 +55,7 @@ app.get('/firstUpper/:str1',(req,res)=>{
 })
 //work
 app.post('/deleteElement/:index',(req,res)=>{
-    
-    //exemple = [1,2,3,4]
-   
+    //var array = [1,2,3,4]
     let array = req.body
     console.log(array)
     const index = req.params.index
@@ -45,7 +68,6 @@ app.post('/deepClone',(req,res)=>{
     
     //const obj1 = {firstName: "James", lastName: "Bond", age: 9}
     //exemple : {"firstName": "James", "lastName": "Bond", "age": 9}
-   
     const obj1 = req.body  
     const obj2 = Object.assign({},obj1)
     res.json({result:obj2})
@@ -56,9 +78,7 @@ app.post('/deepClone',(req,res)=>{
 
 //work
 app.get('/subString/:str4/:str5',(req,res)=>{
-    
     //exemple str4="test",str5="tes"
-    
     const str4 = req.params.str4
     const str5 = req.params.str5
     if(str4.includes(str5)){
@@ -92,7 +112,8 @@ app.post('/groupByProperty/:prop',(req,res)=>{
     const result = groupBy(array,prop)
     res.json({result:result})
     console.log(result)
-})
+})*/
+
 
 
 
