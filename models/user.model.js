@@ -1,16 +1,50 @@
 const express = require('express')
-const connected = require('../Config/db.config')
+const { Sequelize, DataTypes } = require('sequelize')
+const sequelize = new Sequelize('sqlite::memory:', {
+    define: {
+      freezeTableName: true
+    }
+  })
 
-let User =  (user)=> {
-    this.first_name     =user.first_name;
-    this.last_name      =user.last_name;
-    this.email          =user.email;
-    this.phone          =user.phone;
-    this.status         =user.status 
-    this.created_at     =new Date()
+const User = sequelize.define('User', {
+    // Model attributes are defined here
+    id: {
+        type: Sequelize.INREGER,
+        autoIncrement: true,
+        allowNull: false,
+        primaryKey: true
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
+    last_name: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
+    phone: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    status: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
+    created_at:{
+        type: DataTypes.DATE,
+        allowNull: false
+    }})
+  
+  // `sequelize.define` also returns the model
+  console.log(User === sequelize.models.User); // true
 
-}
-
-
-module.exports = User
+  module.exports = User
 
