@@ -18,11 +18,11 @@ exports.groupByProperty = (req,res)=>{
         return acc
         }, {})
     }
-    const result = groupBy(array,prop)
-    res.json({result:result})
-    console.log(result)
-    }
-    
+const result = groupBy(array,prop)
+res.json({result:result})
+console.log(result)
+}
+
   
 
 
