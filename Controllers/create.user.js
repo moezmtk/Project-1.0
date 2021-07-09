@@ -8,10 +8,11 @@ exports.createUser = (req,res)=>{
     connected.query('INSERT INTO user SET ? ',req,(err,res)=>{
         if(err){
             console.log('Error while inserting data');
-            result(null,err);
+            res.json({error:err});
         }else{
             console.log('User created succefully');
-            result(null,res)
+            res.json({success:res})
         }
     })
+   
 }
