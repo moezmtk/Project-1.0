@@ -1,5 +1,6 @@
 
 const express = require('express')
+const connected = require('../Config/db.config')
 
 
 
