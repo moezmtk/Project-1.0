@@ -8,12 +8,6 @@ const sequelize = new Sequelize('sqlite::memory:', {
 
 const User = sequelize.define('User', {
     // Model attributes are defined here
-    id: {
-        type: Sequelize.INREGER,
-        autoIncrement: true,
-        allowNull: false,
-        primaryKey: true
-    },
     first_Name: {
       type: DataTypes.STRING,
       allowNull: false
