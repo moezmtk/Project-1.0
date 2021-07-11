@@ -4,11 +4,11 @@ const db =  require('../Config/db.config')
 
 const User = db.define('User', {
     
-    first_Name: {
+    first_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    last_Name: {
+    last_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -25,8 +25,11 @@ const User = db.define('User', {
       allowNull: false
       }
     },
-    {freezeTableName: true,
-    tableName: 'users'
+    {
+    freezeTableName: true,
+    tableName: 'users',
+    timestamps: false
+  
   })
   
     

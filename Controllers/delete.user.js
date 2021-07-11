@@ -4,28 +4,17 @@ const User = require('../models/user.model')
 
 
 
-
-exports.delete = (req, res) => {
-    const id = req.params.id
-    console.log(id)
-
-    User.destroy({
-      where: { id: id }
-    })
-      .then(num => {
-        if (num == 1) {
-            res.send({
-            message: "Tutorial was deleted successfully!"
-          })
-        } else {
-          res.send({
-            message: `Cannot delete User with id=${id}. Maybe User was not found!`
-          })
-        }
-      })
-      .catch(err => {
-        res.status(500).send({
-          message: "Could not delete User with id=" + id
-        })
-      })
-  }
+  exports.delete = async (req, res) => {
+    try {
+        await User.destroy({
+            where: {
+                id: req.params.id
+            }
+        });
+        res.json({
+            "message": "User Deleted"
+        });
+    } catch (err) {
+        console.log(err);
+    }
+}

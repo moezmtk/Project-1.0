@@ -7,7 +7,7 @@ const User = require('../models/user.model')
 exports.findOne = (req, res) => {
     const id = req.params.id
     
-    console.log(id)
+    console.log('id : ',id)
 
     User.findByPk(id)
         .then(data => {
@@ -20,6 +20,7 @@ exports.findOne = (req, res) => {
         })
 
         
-    res.json(User)
   }
+
+
 

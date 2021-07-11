@@ -24,14 +24,15 @@ exports.createUser = async(req, res) => {
           message:
           err.message || "Some error occurred while creating the Tutorial."
         })
-      })
+      })}
 
+          
 
-    console.log('creat.user "USER" ',User)
+    
 
     
       
     
-  }
+  
 
 
