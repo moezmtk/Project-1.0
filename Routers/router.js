@@ -1,4 +1,3 @@
-
 const express = require('express')
 const router = express.Router()
 
@@ -7,11 +6,16 @@ const deepClones = require ('../Controllers/Exemple/deep.clone')
 const subStrings = require('../Controllers/Exemple/sub.string')
 const groupByPropertys = require ('../Controllers/Exemple/group.by.property')
 const firstUppers = require ('../Controllers/Exemple/first.upper')
+
+
 const createUsers = require ('../Controllers/create.user')
 const findAllUsers = require ('../Controllers/findAll.user')
 const findOneUsers = require ('../Controllers/findOne.user')
 const updateUsers = require ('../Controllers/update.user')
 const deleteUsers = require ('../Controllers/delete.user')
+
+
+
 
 router.get('/firstUpper/:str1',firstUppers.firstUpper)
 router.post('/groupByProperty/:prop',groupByPropertys.groupByProperty)
