@@ -12,24 +12,10 @@ const { Sequelize } = require('sequelize')
 })*/
 
 
-const connected = new Sequelize('base', 'root', '', {
+const db = new Sequelize('base', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   })
 
 
-/*connected.connect((error)=>{
-    if(error) throw error;
-    console.log('Datebase connected Successfully!!!')
-})*/
-
-
-//testing connection 
-try {
-    connected.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-
-module.exports = connected
+module.exports = db
