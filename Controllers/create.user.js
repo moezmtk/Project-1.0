@@ -16,10 +16,20 @@ exports.createUser = async(req, res) => {
     console.log('creat.user "BODY"  ',body)
 
     User.create(body)
+      .then(data => {
+       res.send(data);
+      })
+      .catch(err => {
+        res.status(500).send({
+          message:
+          err.message || "Some error occurred while creating the Tutorial."
+        })
+      })
+
 
     console.log('creat.user "USER" ',User)
 
-    res.json(User)
+    
       
     
   }
