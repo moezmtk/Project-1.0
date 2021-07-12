@@ -1,4 +1,5 @@
 const express = require('express')
+const { validate, ValidationError, Joi } = require('express-validation')
 const router = express.Router()
 
 const deleteElements = require('../Controllers/Exemple/delete.element')
@@ -14,8 +15,8 @@ const findOneUsers = require ('../Controllers/findOne.user')
 const updateUsers = require ('../Controllers/update.user')
 const deleteUsers = require ('../Controllers/delete.user')
 
-
-
+//validation
+const userValidations = require ('../validation/validation.user')
 
 router.get('/firstUpper/:str1',firstUppers.firstUpper)
 router.post('/groupByProperty/:prop',groupByPropertys.groupByProperty)
@@ -24,11 +25,19 @@ router.post('/deepClone',deepClones.deepClone)
 router.post('/deleteElement/:index',deleteElements.deleteElement)
 
 //User fonction
-router.post('/createUser',createUsers.createUser)
+router.post('/createUser', createUsers.createUser, validate(userValidations.userValidation, {}, {}), (req, res) => {
+    res.json(200)
+  })
 router.get('/findAll/:first_name',findAllUsers.findAll)
 router.get('/findOne/:id',findOneUsers.findOne)
-router.put('/updateUser/:id',updateUsers.update)
+
+router.put('/updateUser/:id',updateUsers.update, validate(userValidations.userValidation, {}, {}), (req, res) => {
+    res.json(200)
+  })
+
 router.delete('/deleteUser/:id',deleteUsers.delete)
+
+
 
 
 module.exports = router
