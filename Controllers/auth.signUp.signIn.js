@@ -7,16 +7,17 @@ const Role = db.role
 const Op = db.Sequelize.Op
 
 var jwt = require("jsonwebtoken")
-var bcrypt = require("bcryptjs")
+var CryptoJS  = require("crypto-js")
 
 exports.signup = (req, res) => {
-  console.log(req.body)
+  console.log(req.body.password)
   User.create({
     first_name: req.body.first_name,
     last_name: req.body.last_name,
     username: req.body.username,
     email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8)
+    password:CryptoJS.AES.encrypt(JSON.stringify(req.body.password)).toString()
+    // bcrypt.hashSync(req.body.password, 8)
   })
     .then(user => {
       if (req.body.roles) {
@@ -54,10 +55,7 @@ exports.signin = (req, res) => {
         return res.status(404).send({ message: "User Not found." })
       }
 
-      var passwordIsValid = bcrypt.compareSync(
-        req.body.password,
-        user.password
-      )
+      var passwordIsValid = ( req.body.password === user.password )
 
       if (!passwordIsValid) {
         return res.status(401).send({
@@ -77,6 +75,8 @@ exports.signin = (req, res) => {
         }
         res.status(200).send({
           id: user.id,
+          first_name: user.first_name,
+          last_name: user.last_name,
           username: user.username,
           email: user.email,
           roles: authorities,
