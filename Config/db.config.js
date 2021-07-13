@@ -11,11 +11,17 @@ const { Sequelize } = require('sequelize')
     database: 'base'
 })*/
 
-
-const db = new Sequelize('base', 'root', '', {
+const sequelize  = new Sequelize('base', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
   })
 
+  
 
-module.exports = db
+
+
+
+
+
+
+module.exports = sequelize

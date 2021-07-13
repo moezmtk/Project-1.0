@@ -25,15 +25,13 @@ router.post('/deepClone',deepClones.deepClone)
 router.post('/deleteElement/:index',deleteElements.deleteElement)
 
 //User fonction
-router.post('/createUser', createUsers.createUser, validate(userValidations.userValidation, {}, {}), (req, res) => {
-    res.json(200)
-  })
+router.post('/createUser', validate(userValidations.userValidation, {}, {}), createUsers.createUser)
+
 router.get('/findAll/:first_name',findAllUsers.findAll)
 router.get('/findOne/:id',findOneUsers.findOne)
 
-router.put('/updateUser/:id',updateUsers.update, validate(userValidations.userValidation, {}, {}), (req, res) => {
-    res.json(200)
-  })
+router.put('/updateUser/:id', validate(userValidations.userValidation, {}, {}), updateUsers.update)
+
 
 router.delete('/deleteUser/:id',deleteUsers.delete)
 
