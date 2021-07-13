@@ -15,12 +15,12 @@ db.role = require("../models/role.model")
 
 
 db.role.belongsToMany(db.user, {
-  through: "user_role",
+  through: "user_roles",
   foreignKey: "roleId",
   otherKey: "userId"
 })
 db.user.belongsToMany(db.role, {
-  through: "user_role",
+  through: "user_roles",
   foreignKey: "userId",
   otherKey: "roleId"
 })
