@@ -8,13 +8,14 @@ exports.userValidation = {
         first_name: joi.string()
             .required(),
         last_name: joi.string()
-            .required(),      
+            .required(),
+        username: joi.string()
+            .required(), 
         email: Joi.string()
             .email()
             .required(),
-        phone: joi.number()
-            .required(),
-        status: joi.number()
+         password: joi.string()
+            .required(), 
     }),
   }
 

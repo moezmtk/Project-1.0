@@ -18,8 +18,7 @@ const deleteUsers = require ('../Controllers/delete.user')
 //validation
 const userValidations = require ('../validation/validation.user')
 // auth
-const { verifySignUp } = require("../Middleware/verifySignUp")
-const controller = require("../controllers/auth.signUp.signIn")
+
 
 
 router.get('/firstUpper/:str1',firstUppers.firstUpper)
@@ -29,10 +28,16 @@ router.post('/deepClone',deepClones.deepClone)
 router.post('/deleteElement/:index',deleteElements.deleteElement)
 
 //User fonction
-router.post('/createUser', validate(userValidations.userValidation, {}, {}), createUsers.createUser)
+const  verifySignUp  = require("../Middleware/verifySignUp")
+router.post('/signUp', validate(userValidations.userValidation, {}, {}),[
+    verifySignUp.checkDuplicate,
+    verifySignUp.checkRolesExisted
+  ], createUsers.signup)
+
+router.post('/signIn',findOneUsers.findOne)
 
 router.get('/findAll/:first_name',findAllUsers.findAll)
-router.get('/findOne/:id',findOneUsers.findOne)
+
 
 router.put('/updateUser/:id', validate(userValidations.userValidation, {}, {}), updateUsers.update)
 
