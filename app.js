@@ -2,8 +2,10 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./Config/db.config')
 const router = require('./Routers/router')
-
+const router1 = require('./Routers/auth.routes')
+const router2 = require('./Routers/user.routes')
 const app = express()
+
 const port = process.env.port || 3000
 
 app.use(bodyParser.urlencoded({extended: true}))
@@ -13,8 +15,8 @@ const http = require('http');
 http.createServer((req, res)=> {
 })
 
-
-
+app.use('/',router2)
+app.use('/',router1)
 app.use('/',router)
 app.listen(port,()=>{
     console.log(`Express server is running at port ${port}`)

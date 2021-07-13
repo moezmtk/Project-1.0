@@ -5,7 +5,7 @@ const User = db.user
 
 
 
-checkDuplicateUsernameOrEmail = (req, res, next) => {
+checkDuplicate = (req, res, next) => {
     
     User.findOne({
       where: {
@@ -53,7 +53,7 @@ checkDuplicateUsernameOrEmail = (req, res, next) => {
   }
   
   const verifySignUp = {
-    checkDuplicateUsernameOrEmail: checkDuplicateUsernameOrEmail,
+    checkDuplicate: checkDuplicate,
     checkRolesExisted: checkRolesExisted
   };
   

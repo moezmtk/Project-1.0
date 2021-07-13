@@ -17,6 +17,10 @@ const deleteUsers = require ('../Controllers/delete.user')
 
 //validation
 const userValidations = require ('../validation/validation.user')
+// auth
+const { verifySignUp } = require("../Middleware/verifySignUp")
+const controller = require("../controllers/auth.signUp.signIn")
+
 
 router.get('/firstUpper/:str1',firstUppers.firstUpper)
 router.post('/groupByProperty/:prop',groupByPropertys.groupByProperty)
