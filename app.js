@@ -2,7 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const db = require('./Config/db.config')
 const router = require('./Routers/router')
-const router1 = require('./Routers/user.routes')
+
 
 const app = express()
 
@@ -15,7 +15,7 @@ const http = require('http');
 http.createServer((req, res)=> {
 })
 
-app.use('/',router1)
+
 
 app.use('/',router)
 app.listen(port,()=>{

@@ -1,13 +1,11 @@
 const { DataTypes } = require('sequelize')
 const express = require('express')
 const User = require('../models/user.model')
-var jwt = require("jsonwebtoken")
-var CryptoJS  = require("crypto-js")
 //exemple : { "first_name": "moez", "last_name" : "barhoumi", "email" : "moez@gmail.com", "phone" : "20189195", "status" : "1" }
 
 
 //signup user
-exports.signup = async(req, res) => {    
+exports.createUser = async(req, res) => {    
     
 
     console.log('creat.user "BODY"  ',req.body)
@@ -16,46 +14,20 @@ exports.signup = async(req, res) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       username: req.body.username,
-      email: req.body.email,
-      password:CryptoJS.AES.encrypt(JSON.stringify(req.body.password)).toString() })
-      .then(user => {
-        if (req.body.roles) {
-          Role.findAll({
-            where: {
-              name: {
-                [Op.or]: req.body.roles
-              }
-            }
-          }).then(roles => {
-            user.setRoles(roles).then(() => {
-              res.send({ message: "User was registered successfully!" })
-            })
-          })
-        } else {
-          // user role = 1
-          user.setRoles([1]).then(() => {
-            res.send({ message: "User was registered successfully!" })
-          })
-        }
+      password:req.body.password,
+      email: req.body.email}
+      )
+      
+      .then(data => {
+        res.send(data)
       })
       .catch(err => {
-        res.status(500).send({ message: err.message })
+        res.status(500).send({
+          message:
+            err.message || "Some error occurred while creating the user."
+        })
       })
-  }
-  
-  
-  
-  
   
 
 
-          
-
-    
-
-    
-      
-    
-  
-
-
+    }

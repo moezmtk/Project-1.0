@@ -9,6 +9,17 @@ const groupByPropertys = require ('../Controllers/Exemple/group.by.property')
 const firstUppers = require ('../Controllers/Exemple/first.upper')
 
 
+router.get('/firstUpper/:str1',firstUppers.firstUpper)
+router.post('/groupByProperty/:prop',groupByPropertys.groupByProperty)
+router.get('/subString/:str4/:str5',subStrings.subString)
+router.post('/deepClone',deepClones.deepClone)
+router.post('/deleteElement/:index',deleteElements.deleteElement)
+
+
+
+////////////////////////////////////////////////
+
+
 const createUsers = require ('../Controllers/create.user')
 const findAllUsers = require ('../Controllers/findAll.user')
 const findOneUsers = require ('../Controllers/findOne.user')
@@ -17,30 +28,19 @@ const deleteUsers = require ('../Controllers/delete.user')
 
 //validation
 const userValidations = require ('../validation/validation.user')
-// auth
 
 
 
-router.get('/firstUpper/:str1',firstUppers.firstUpper)
-router.post('/groupByProperty/:prop',groupByPropertys.groupByProperty)
-router.get('/subString/:str4/:str5',subStrings.subString)
-router.post('/deepClone',deepClones.deepClone)
-router.post('/deleteElement/:index',deleteElements.deleteElement)
 
 //User fonction
-const  verifySignUp  = require("../Middleware/verifySignUp")
-router.post('/signUp', validate(userValidations.userValidation, {}, {}),[
-    verifySignUp.checkDuplicate,
-    verifySignUp.checkRolesExisted
-  ], createUsers.signup)
 
-router.post('/signIn',findOneUsers.findOne)
+router.post('/createUser',validate(userValidations.userValidation, {}, {}), createUsers.createUser)
+
+router.get('/findOne/:username',findOneUsers.findOne)
 
 router.get('/findAll/:first_name',findAllUsers.findAll)
 
-
 router.put('/updateUser/:id', validate(userValidations.userValidation, {}, {}), updateUsers.update)
-
 
 router.delete('/deleteUser/:id',deleteUsers.delete)
 

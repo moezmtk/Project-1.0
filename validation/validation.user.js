@@ -15,10 +15,21 @@ exports.userValidation = {
             .email()
             .required(),
          password: joi.string()
-            .required(), 
+            .required()
+            .min(4) 
     }),
   }
 
+
+  exports.roleValidation = {  
+        body : Joi.object({
+        username: Joi.string()
+        .required(),
+        password: Joi.string()
+        .required()
+    }),
+    
+}
 
 
 
